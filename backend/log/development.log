@@ -1,0 +1,327 @@
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ lib/tasks/dcms.rake:5:in `block (2 levels) in <main>'
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ lib/tasks/dcms.rake:5:in `block (2 levels) in <main>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ lib/tasks/dcms.rake:5:in `block (2 levels) in <main>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ lib/tasks/dcms.rake:5:in `block (2 levels) in <main>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ lib/tasks/dcms.rake:5:in `block (2 levels) in <main>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ lib/tasks/dcms.rake:5:in `block (2 levels) in <main>'
+  [1m[35m (76.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "backend_development"[0m
+  ↳ lib/tasks/dcms.rake:5:in `block (2 levels) in <main>'
+  [1m[35m (37.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "backend_test"[0m
+  ↳ lib/tasks/dcms.rake:5:in `block (2 levels) in <main>'
+  [1m[35m (170.0ms)[0m  [1m[35mCREATE DATABASE "backend_development" ENCODING = 'unicode'[0m
+  ↳ lib/tasks/dcms.rake:8:in `block (2 levels) in <main>'
+  [1m[35m (90.1ms)[0m  [1m[35mCREATE DATABASE "backend_test" ENCODING = 'unicode'[0m
+  ↳ lib/tasks/dcms.rake:8:in `block (2 levels) in <main>'
+  [1m[35m (14.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5073945470573576205)[0m
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+Migrating to CreateUsers (20210217122836)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210217122836"]]
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+Migrating to CreateTasks (20210217123126)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+  [1m[35m (11.4ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" bigserial primary key, "title" character varying, "image_url" character varying, "done" boolean, "user_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_4d2a9e4d7e"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  "index_tasks_on_user_id" ON "tasks"  ("user_id")[0m
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210217123126"]]
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-17 13:07:04.602411"], ["updated_at", "2021-02-17 13:07:04.602411"]]
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5073945470573576205)[0m
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ lib/tasks/dcms.rake:11:in `block (2 levels) in <main>'
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Mateen"], ["created_at", "2021-02-17 13:07:04.728845"], ["updated_at", "2021-02-17 13:07:04.728845"]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Parsa"], ["created_at", "2021-02-17 13:07:04.733844"], ["updated_at", "2021-02-17 13:07:04.733844"]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mTask Create (3.0ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "image_url", "done", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Brush My Teeth"], ["image_url", "https://i.pinimg.com/originals/44/56/06/4456060fd88aad2ff0ab91ceee54d86e.jpg"], ["done", false], ["user_id", 1], ["created_at", "2021-02-17 13:07:04.764908"], ["updated_at", "2021-02-17 13:07:04.764908"]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mTask Create (0.3ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "image_url", "done", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Make My Bed"], ["image_url", "https://www.clipartkey.com/mpngs/m/5-59512_bed-make-clipart-clip-art-images-transparent-png.png"], ["done", false], ["user_id", 1], ["created_at", "2021-02-17 13:07:04.772292"], ["updated_at", "2021-02-17 13:07:04.772292"]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mTask Create (0.2ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "image_url", "done", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Pick Up Toys"], ["image_url", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqZJx2IAbfHYuagyom34F_OfBwPCi8TO3eIg&usqp=CAU"], ["done", false], ["user_id", 1], ["created_at", "2021-02-17 13:07:04.776170"], ["updated_at", "2021-02-17 13:07:04.776170"]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mTask Create (0.2ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "image_url", "done", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Eat Fruits"], ["image_url", "https://thumbs.dreamstime.com/z/child-healthy-food-14021377.jpg"], ["done", false], ["user_id", 1], ["created_at", "2021-02-17 13:07:04.779781"], ["updated_at", "2021-02-17 13:07:04.779781"]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mTask Create (0.3ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "image_url", "done", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Dishe To The Sink"], ["image_url", "https://webstockreview.net/images/dishes-clipart-sink-clipart.jpg"], ["done", false], ["user_id", 1], ["created_at", "2021-02-17 13:07:04.784983"], ["updated_at", "2021-02-17 13:07:04.784983"]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (5.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "image_url", "done", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Get Dressed"], ["image_url", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEROLQXYr9-tSCfzDfwPZOuvjrfs1SIQ6hEw&usqp=CAU"], ["done", false], ["user_id", 1], ["created_at", "2021-02-17 13:07:04.795918"], ["updated_at", "2021-02-17 13:07:04.795918"]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mTask Create (0.3ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "image_url", "done", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Take a Bath"], ["image_url", "https://cdn2.vectorstock.com/i/1000x1000/76/31/cartoon-child-taking-a-bath-vector-5617631.jpg"], ["done", false], ["user_id", 1], ["created_at", "2021-02-17 13:07:04.801661"], ["updated_at", "2021-02-17 13:07:04.801661"]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mTask Create (0.3ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "image_url", "done", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Play Piano"], ["image_url", "https://thumbs.dreamstime.com/b/illustration-boy-girl-playing-piano-music-musician-childhood-pianist-children-vector-activity-entertainment-hobby-kids-157365796.jpg"], ["done", false], ["user_id", 1], ["created_at", "2021-02-17 13:07:04.806544"], ["updated_at", "2021-02-17 13:07:04.806544"]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mTask Create (0.3ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "image_url", "done", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Brush My Teeth"], ["image_url", "https://i.ytimg.com/vi/-eqbUgsI3RQ/maxresdefault.jpg"], ["done", false], ["user_id", 2], ["created_at", "2021-02-17 13:07:04.810669"], ["updated_at", "2021-02-17 13:07:04.810669"]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mTask Create (0.3ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "image_url", "done", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Sing a Song"], ["image_url", "https://previews.123rf.com/images/colorfuelstudio/colorfuelstudio2001/colorfuelstudio200101740/138519494-happy-cute-kid-boy-sing-a-song.jpg"], ["done", false], ["user_id", 2], ["created_at", "2021-02-17 13:07:04.814211"], ["updated_at", "2021-02-17 13:07:04.814211"]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mTask Create (0.2ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "image_url", "done", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Pick Up Toys"], ["image_url", "https://i.pinimg.com/originals/87/12/03/8712034c6c9b2edc7ea120cf88d0c301.jpg"], ["done", false], ["user_id", 2], ["created_at", "2021-02-17 13:07:04.817898"], ["updated_at", "2021-02-17 13:07:04.817898"]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mTask Create (0.2ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "image_url", "done", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Eat Fruits"], ["image_url", "http://zahibutik.com/wp-content/uploads/2018/07/Cute-baby-eating-fruits.jpg"], ["done", false], ["user_id", 2], ["created_at", "2021-02-17 13:07:04.821814"], ["updated_at", "2021-02-17 13:07:04.821814"]]
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/tasks/dcms.rake:14:in `block (2 levels) in <main>'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 LIMIT $2[0m  [["user_id", 2], ["LIMIT", 11]]
+Started GET "/" for ::1 at 2021-02-17 08:17:28 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/nasrinrahimi/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/nasrinrahimi/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 8.2ms | Allocations: 480)
+Completed 200 OK in 21ms (Views: 15.2ms | ActiveRecord: 0.0ms | Allocations: 2631)
+
+
+Started GET "/users" for ::1 at 2021-02-17 08:17:34 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/api/v1/users" for ::1 at 2021-02-17 08:17:47 -0500
+Processing by Api::V1::UsersController#index as HTML
+Completed 500 Internal Server Error in 181ms (ActiveRecord: 0.0ms | Allocations: 71414)
+
+
+  
+NameError (undefined local variable or method `user' for #<Api::V1::UsersController:0x00007faf14a645f8>
+Did you mean?  users):
+  
+app/controllers/api/v1/users_controller.rb:7:in `index'
+Started GET "/api/v1/users" for ::1 at 2021-02-17 08:18:14 -0500
+Processing by Api::V1::UsersController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/v1/users_controller.rb:7:in `index'
+Completed 200 OK in 15ms (Views: 7.1ms | ActiveRecord: 4.7ms | Allocations: 4846)
+
+
+Started GET "/api/v1/user/1" for ::1 at 2021-02-17 08:18:57 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/user/1"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/api/v1/users/1" for ::1 at 2021-02-17 08:19:29 -0500
+Processing by Api::V1::UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 493)
+
+
+  
+NoMethodError (undefined method `find' for nil:NilClass):
+  
+app/controllers/api/v1/users_controller.rb:36:in `set_user'
+Started GET "/api/v1/users/1" for ::1 at 2021-02-17 08:19:44 -0500
+Processing by Api::V1::UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:36:in `set_user'
+Completed 500 Internal Server Error in 173ms (ActiveRecord: 3.5ms | Allocations: 74662)
+
+
+  
+NameError (undefined local variable or method `user' for #<Api::V1::UsersController:0x00007faf10c9d1e8>
+Did you mean?  super):
+  
+app/controllers/api/v1/users_controller.rb:11:in `show'
+Started GET "/api/v1/users/1" for ::1 at 2021-02-17 08:20:00 -0500
+Processing by Api::V1::UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:36:in `set_user'
+Completed 200 OK in 13ms (Views: 0.3ms | ActiveRecord: 4.2ms | Allocations: 4329)
+
+
+Started GET "/api/v1/users/2" for ::1 at 2021-02-17 08:21:32 -0500
+Processing by Api::V1::UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:36:in `set_user'
+Completed 200 OK in 16ms (Views: 0.5ms | ActiveRecord: 5.1ms | Allocations: 4260)
+
+
+Started GET "/api/v1/users/2/tasks" for ::1 at 2021-02-17 08:23:39 -0500
+Processing by Api::V1::TasksController#index as HTML
+  Parameters: {"user_id"=>"2"}
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:7:in `index'
+Completed 200 OK in 19ms (Views: 11.0ms | ActiveRecord: 3.9ms | Allocations: 7860)
+
+
+Started GET "/api/v1/users/1/tasks" for ::1 at 2021-02-17 08:24:26 -0500
+Processing by Api::V1::TasksController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:7:in `index'
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.3ms | Allocations: 2490)
+
+
+Started GET "/api/v1/users/1/tasks/1" for ::1 at 2021-02-17 08:25:48 -0500
+Processing by Api::V1::TasksController#show as HTML
+  Parameters: {"user_id"=>"1", "id"=>"1"}
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:36:in `set_task'
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 895)
+
+
+Started GET "/api/v1/users/1/tasks/10" for ::1 at 2021-02-17 08:25:52 -0500
+Processing by Api::V1::TasksController#show as HTML
+  Parameters: {"user_id"=>"1", "id"=>"10"}
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:36:in `set_task'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 770)
+
+
