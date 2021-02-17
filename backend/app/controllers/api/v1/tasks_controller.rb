@@ -3,11 +3,13 @@ class Api::V1::TasksController < ApplicationController
     before_action :set_task, only: [:show, :update, :destroy]
 
     def index
-        @tasks = Task.all
-        render json: @tasks, status: 200
+        user = User.find(params[:user_id])
+        tasks = user.tasks
+        render json: tasks, status: 200
     end
 
     def show
+        //check if task belongs to the user
         render json: @task, status: 200
     end
 
