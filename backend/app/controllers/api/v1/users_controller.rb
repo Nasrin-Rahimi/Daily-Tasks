@@ -3,12 +3,17 @@ class Api::V1::UsersController < ApplicationController
     before_action :set_user, only: [:show, :update, :destroy]
     
     def index 
-        @users = User.all
-        render json: @users, status: 200
+        users = User.all
+        render json: users, except: [:created_at, :updated_at], status: 200
     end
 
     def show
-        render json: @user, status: 200
+        if(@user)
+            render json: {userId: @user.id, name: @user.name, tasks: @user.tasks}, status: 200
+        else
+            binding.pry
+            render json: {message: 'User Not Found'}
+        end
     end
 
     def create
