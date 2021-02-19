@@ -22,6 +22,6 @@ class Tasks{
     }
 
     render(){
-        this.tasksContainer.innerHTML = this.tasks.map(task => `<li>${task.title}</li>`).join('');
+        this.tasksContainer.innerHTML = this.tasks.map(task => task.renderLi()).join('');
     }
 }
