@@ -11,6 +11,18 @@ class Tasks{
     }
 
     fetchAndLoadTasks(){
-        this.adapter.getTasks().then(tasks => console.log(tasks))
+        this.adapter
+        .getTasks()
+        .then(tasks => { 
+            tasks.forEach(task => this.tasks.push(new Task(task)));
+        })
+        .then( () => {
+            this.render();
+        })
+    }
+
+    render(){
+        const tasksContainer = document.getElementById('tasks_container');
+        tasksContainer.innerHTML = this.tasks.map(task => `<li>${task.title}</li>`).join('');
     }
 }
