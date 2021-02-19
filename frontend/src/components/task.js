@@ -6,4 +6,8 @@ class Task{
         this.done = taskJSON.done
         this.userId = taskJSON.user_id;
     }
+
+    renderLi(){
+        return `<li>${this.title}</li>`
+    }
 }
