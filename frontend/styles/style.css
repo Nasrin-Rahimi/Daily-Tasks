@@ -4,23 +4,37 @@ body {
     font-family:'Times New Roman', Times, serif
   }
 
-  h1{
-    color: royalblue;
+#tasks-header {
+    display: flex;
+    justify-content: center;
+    background:rgb(138, 138, 175);
+    opacity: .8;
+    height: 7rem;
+    padding: 1rem;
+  }
+  
+#tasks-header img {
+    height: 7rem;
+    width: auto;
+  }
+
+.container{
+    margin: 6px;
 }
 
 #tasks-collection {
-    margin: 2rem;
+    margin: 5px;
   }
   
 #tasks_container {
    border: grey solid 1px;
-   padding: 1rem;
-   margin: 1rem 2rem;
-   background-color:rgb(231, 231, 240)
+   padding: 3rem;
+   margin: 2rem 1rem;
+   background-color:rgb(237, 237, 251)
   }
 
   .task{
-    background-color:rgb(165, 223, 243) ;
+    background-color:rgba(124, 173, 214, 0.609) ;
     text-align: center;
     border: grey solid 1px;
     padding: 1rem;
@@ -60,6 +74,25 @@ body {
   }
   
   .submit:hover {
+    background-color: whitesmoke;
+    border: #e04b52 solid 1px;
+    color: #e04b52;
+  }
+
+  button {
+    position: relative;
+    background-color: #e04b52;
+    border: none;
+    border-radius: 5px;
+    height: 2rem;
+    width: max-content;
+    color: whitesmoke;
+    font-size: 18px;
+    justify-self: center;
+    margin: 5px;
+  }
+  
+  button:hover {
     background-color: whitesmoke;
     border: #e04b52 solid 1px;
     color: #e04b52;
