@@ -9,7 +9,7 @@ class Api::V1::TasksController < ApplicationController
     end
 
     def show
-        //check if task belongs to the user
+        # check if task belongs to the user
         render json: @task, status: 200
     end
 
