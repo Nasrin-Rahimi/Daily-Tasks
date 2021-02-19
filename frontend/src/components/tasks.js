@@ -7,7 +7,7 @@ class Tasks{
     }
 
     initBindingsAndEventListener(){
-
+        this.tasksContainer = document.getElementById('tasks_container');
     }
 
     fetchAndLoadTasks(){
@@ -22,7 +22,6 @@ class Tasks{
     }
 
     render(){
-        const tasksContainer = document.getElementById('tasks_container');
-        tasksContainer.innerHTML = this.tasks.map(task => `<li>${task.title}</li>`).join('');
+        this.tasksContainer.innerHTML = this.tasks.map(task => `<li>${task.title}</li>`).join('');
     }
 }
