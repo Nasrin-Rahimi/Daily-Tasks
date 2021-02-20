@@ -1,7 +1,7 @@
 class App{
     constructor(){
          // this.tasks = new Tasks();
-       this.user = {};
+       //this.user = {};  It's better to save user in app class or not?
        this.adapter = new UsersAdapter();
        this.initBindingsAndEventListener();
     }
@@ -14,7 +14,6 @@ class App{
     findOrCreateUser(e){
         e.preventDefault();
         const userName = e.target.children[0].value;
-        this.adapter.findOrCreateUser(userName).then(user => this.user = new User(user));
-        console.log(this)
+        this.adapter.findOrCreateUser(userName).then(user => new User(user));
     }
 }
