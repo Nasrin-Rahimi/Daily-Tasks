@@ -21,3 +21,7 @@
 7- Generate tasks Controller 
     - use api > v1 namespace
     - create task route
+
+
+- delete unnecessary actions from users and tasks controller
+- In task show, check if task belongs to the user.

@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
 
-    before_action :set_user, only: [:show, :update, :destroy]
+    # before_action :set_user, only: [:show, :update, :destroy]
     
     def index 
         users = User.all
@@ -8,17 +8,22 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def show
-        if(@user)
-            render json: {userId: @user.id, name: @user.name, tasks: @user.tasks}, status: 200
+        user = User.find_by(id: params[:id])
+        if(user)
+            render json: {id: user.id, name: user.name, tasks: user.tasks}, status: 200
         else
-            binding.pry
             render json: {message: 'User Not Found'}
         end
     end
 
     def create
-        @user = User.create(user_params)
-        render json: @user, status: 200
+        if User.find_by(:name => user_params[:name])
+            user = User.find_by(:name => user_params[:name])
+            redirect_to "/api/v1/users/#{user.id}"
+        else
+            user = User.create(user_params)
+            render json: user, status: 200
+        end        
     end
 
     def update
