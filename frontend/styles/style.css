@@ -9,6 +9,10 @@ h2{
   color: brown;
 }
 
+#message-div{
+  display: none;
+}
+
 #tasks-header {
     display: flex;
     justify-content: center;
@@ -35,7 +39,8 @@ h2{
    border: grey solid 1px;
    padding: 3rem;
    margin: 2rem 1rem;
-   background-color:rgb(237, 237, 251)
+   background-color:rgb(237, 237, 251);
+   display: none;
   }
 
   .task{
