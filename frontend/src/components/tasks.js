@@ -10,6 +10,7 @@ class Tasks{
     initBindingsAndEventListener(){
         this.tasksContainer = document.getElementById('tasks_container');
         this.messageDiv = document.getElementById('message-div');
+        this.newToyBtn = document.getElementById('new-toy-btn');
     }
 
     // fetchAndLoadTasks(){
@@ -28,6 +29,7 @@ class Tasks{
     }
 
     renderTasks(){
+        this.newToyBtn.style.display = 'block';
         if (this.tasks.length > 0){
             this.tasksContainer.style.display = "block";
             this.messageDiv.style.display = "none";

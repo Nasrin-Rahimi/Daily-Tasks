@@ -8,6 +8,6 @@ class Task{
     }
 
     renderLi(){
-        return `<li class="task">${this.title}</li>`
+        return `<li class="task">${this.title}<img class="taskImage" src="${this.imageUrl}"/></li>`
     }
 }

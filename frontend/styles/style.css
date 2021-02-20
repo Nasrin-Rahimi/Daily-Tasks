@@ -31,6 +31,12 @@ h2{
     margin: 6px;
 }
 
+.taskImage{
+  justify-self: center;
+  height: 8rem;
+  width: auto;
+}
+
 #tasks-collection {
     margin: 5px;
   }
@@ -106,5 +112,9 @@ h2{
     background-color: whitesmoke;
     border: #e04b52 solid 1px;
     color: #e04b52;
+  }
+
+  #new-toy-btn{
+    display: none;
   }
   
