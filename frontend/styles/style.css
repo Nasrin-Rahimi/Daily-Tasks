@@ -60,6 +60,11 @@ h2{
     margin: 1rem 2rem;
     box-shadow: 3px 4px #e04b52
   }
+
+  .checked{
+    pointer-events:none;  /*This makes it not clickable*/
+    opacity:0.6;         /*This grays it out to look disabled*/
+  }
   
   .task-avatar {
     justify-self: center;
