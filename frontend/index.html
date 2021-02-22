@@ -24,13 +24,18 @@
     </div>
     <div id="message-div">
     </div>
-    <p>
-        <button id="new-toy-btn">Add new Task!</button>
-    </p>
     <div id="tasks-collection">
+        <button id="new-task-btn" >Add new Task!</button>
+        <div id="new-task-container">
+            <form id="new-task-form">
+                <input type="text" id="title" class="input-text new-task" placeholder="Enter your task ..." /><br>
+                <input type="text" id="image_url" class="input-text new-task" placeholder="Enter your Image Url ..." /><br>
+                <input type="submit" name="submit" value="Create Task" class="submit" />
+            </form>
+        </div>
         <ul id="tasks_container">
-            
         </ul>
+
         <div id="task-show">
             
         </div>   

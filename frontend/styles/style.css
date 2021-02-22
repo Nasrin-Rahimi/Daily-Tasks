@@ -48,6 +48,13 @@ h2{
    background-color:rgb(237, 237, 251);
    display: none;
   }
+#new-task-container{
+  border: grey solid 1px;
+   padding: 3rem;
+   margin: 2rem 1rem;
+   background-color:rgb(237, 237, 251);
+   display: none;
+}
 
   .task{
     background-color:rgba(124, 173, 214, 0.609) ;
@@ -79,6 +86,10 @@ h2{
     font-size: 18px;
     font-family: monospace;
     margin: 3px;
+  }
+
+  .new-task{
+    width: 80%;
   }
 
   .submit {
@@ -119,7 +130,7 @@ h2{
     color: #e04b52;
   }
 
-  #new-toy-btn{
+  #new-task-btn{
     display: none;
   }
   
