@@ -9,13 +9,13 @@ class TasksAdapter{
 
     updateTask(task){
         // console.log(task);
-        return fetch(`${this.baseUrl}/${task.id}`, {
+        fetch(`${this.baseUrl}/${task.id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
                 "Accept": "application/json"
             },
             body:  JSON.stringify( {task} )
-        }).then(res => res.json())
+        })
     }
 }
