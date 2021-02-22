@@ -19,7 +19,7 @@ class Api::V1::TasksController < ApplicationController
     end
 
     def update
-        @task.update
+        @task.update(task_params)
         render json: @task, status: 200
     end
 
