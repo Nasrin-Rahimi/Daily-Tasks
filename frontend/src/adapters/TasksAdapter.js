@@ -6,4 +6,16 @@ class TasksAdapter{
     getTasks(){
         return fetch(this.baseUrl).then(res => res.json());
     }
+
+    updateTask(task){
+        // console.log(task);
+        return fetch(`${this.baseUrl}/${task.id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                "Accept": "application/json"
+            },
+            body:  JSON.stringify( {task} )
+        }).then(res => res.json())
+    }
 }
