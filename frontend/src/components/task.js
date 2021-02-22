@@ -7,7 +7,26 @@ class Task{
         this.userId = taskJSON.user_id;
     }
 
-    renderLi(){
-        return `<li class="task">${this.title}<img class="taskImage" src="${this.imageUrl}"/></li>`
+    renderTask(){
+        if (this.done == true){
+            return `<li class="task checked"><input type="checkbox" id="${this.id}" checked />
+            <label for="${this.id}">${this.title}</label>
+            <img class="taskImage" src="${this.imageUrl}"/>
+            </li>`
+        } else {
+            return `<li class="task"><input type="checkbox" id="${this.id}" />
+            <label for="${this.id}">${this.title}</label>
+            <img class="taskImage" src="${this.imageUrl}"/>
+            </li>`
+        }
+        // const li = document.createElement('li');
+        // li.classList.add('task');
+        // const doneCheckbox = document.createElement('checkbox');
+        // doneCheckbox.id = this.id;
+        // doneCheckbox.checked = false;
+        // li.appendChild(doneCheckbox);
+        // return li;
     }
+
+    
 }
