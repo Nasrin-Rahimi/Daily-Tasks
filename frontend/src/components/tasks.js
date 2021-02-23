@@ -6,6 +6,7 @@ class Tasks{
         this.initBindingsAndEventListener();
         this.loadTasks(tasksJSON);
         this.renderTasks();
+        // console.log(this)
     }
 
     initBindingsAndEventListener(){
@@ -17,6 +18,8 @@ class Tasks{
         this.tasksContainer.addEventListener('change', this.doneTask.bind(this));
         this.newTaskBtn.addEventListener('click', this.newTask.bind(this));
         this.newTaskForm.addEventListener('submit', this.createTask.bind(this));
+        // this.allTasks = document.querySelectorAll(".delete");
+        this.tasksContainer.addEventListener('click', this.deleteTask.bind(this));
     }
 
     loadTasks(tasksJSON){
@@ -63,6 +66,12 @@ class Tasks{
         // .then(user => new User(user))
         // .then(user => this.welcomeDiv.innerHTML = `<h2>Welcome ${user.userName}</h2>`);
         
+    }
+
+    deleteTask(e){
+        if(e.target && e.target.nodeName == "BUTTON") {
+            console.log(e.target.id + " was clicked");
+        }
     }
 
     renderTasks(){
