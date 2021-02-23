@@ -18,7 +18,6 @@ class Tasks{
         this.tasksContainer.addEventListener('change', this.updateTask.bind(this));
         this.newTaskBtn.addEventListener('click', this.newTask.bind(this));
         this.newTaskForm.addEventListener('submit', this.createTask.bind(this));
-        // this.allTasks = document.querySelectorAll(".delete");
         this.tasksContainer.addEventListener('click', this.deleteTask.bind(this));
     }
 
@@ -58,20 +57,19 @@ class Tasks{
             title = "";
             image_url = "";
         });
-
-        // this.adapter.createNote(value).then(note => {
-        //     this.notes.push(new Note(note))
-        //     this.newNoteBody.value = ''
-        //     this.render();
-        // });
-        // .then(user => new User(user))
-        // .then(user => this.welcomeDiv.innerHTML = `<h2>Welcome ${user.userName}</h2>`);
-        
     }
 
     deleteTask(e){
+        const taskId = e.target.id
         if(e.target && e.target.nodeName == "BUTTON") {
-            console.log(e.target.id + " was clicked");
+            this.adapter.deleteTask(taskId).then(res =>{
+               if (res.status){
+                   const userIdIndex = this.tasks.findIndex(element => element.id == taskId)
+                    this.tasks.splice(userIdIndex, 1);
+                    this.renderTasks();
+               }
+            })
+           
         }
     }
 

@@ -19,14 +19,23 @@ class TasksAdapter{
     }
 
     updateTask(task){
-        // console.log(task);
-        fetch(`${this.baseUrl}/${task.id}`, {
+        return fetch(`${this.baseUrl}/${task.id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
                 "Accept": "application/json"
             },
             body:  JSON.stringify( {task} )
+        })
+    }
+
+    deleteTask(taskId){
+        return fetch(`${this.baseUrl}/${taskId}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                "Accept": "application/json"
+            }
         })
     }
 
