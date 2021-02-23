@@ -4,12 +4,12 @@ class User{
         this.userName = userJSON.name;
         //this.tasks = userJSON.tasks;
         // this.tasks = new Tasks(userJSON.tasks);
-        this.loadTasks(userJSON.tasks);
-        console.log(this)
+        this.loadTasks(userJSON.tasks, this.userId);
+        // console.log(this)
     }
 
-   loadTasks(tasks){
-        new Tasks(tasks);
+   loadTasks(tasks, userId){
+        new Tasks(tasks, userId);
    }
 
 }

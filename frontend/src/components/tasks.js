@@ -1,10 +1,12 @@
 class Tasks{
-    constructor(tasksJSON){
+    constructor(tasksJSON, userId){
         this.adapter = new TasksAdapter();
         this.tasks = [];
+        this.userId = userId;
         this.initBindingsAndEventListener();
         this.loadTasks(tasksJSON);
         this.renderTasks();
+        console.log(this)
     }
 
     initBindingsAndEventListener(){
@@ -12,9 +14,10 @@ class Tasks{
         this.messageDiv = document.getElementById('message-div');
         this.newTaskBtn = document.getElementById('new-task-btn');
         this.newTaskContainer = document.getElementById('new-task-container');
+        this.newTaskForm = document.getElementById('new-task-form');
         this.tasksContainer.addEventListener('change', this.doneTask.bind(this));
         this.newTaskBtn.addEventListener('click', this.newTask.bind(this));
-
+        this.newTaskForm.addEventListener('submit', this.createTask.bind(this));
     }
 
     loadTasks(tasksJSON){
@@ -32,6 +35,21 @@ class Tasks{
         this.newTaskContainer.style.display == 'block' ? 
             this.newTaskContainer.style.display = 'none' : 
             this.newTaskContainer.style.display = 'block';
+    }
+
+    createTask(e){
+        e.preventDefault();
+        const task = { 
+            title: e.target.children[0].value,
+            image_url: e.target.children[2].value,
+            done: false,
+            user_id: 6
+        };
+        console.log(this);
+        // this.adapter.findOrCreateUser(userName)
+        // .then(user => new User(user))
+        // .then(user => this.welcomeDiv.innerHTML = `<h2>Welcome ${user.userName}</h2>`);
+        
     }
 
     renderTasks(){
