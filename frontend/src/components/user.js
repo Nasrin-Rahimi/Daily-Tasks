@@ -3,13 +3,13 @@ class User{
         this.userId = userJSON.id;
         this.userName = userJSON.name;
         //this.tasks = userJSON.tasks;
-        this.tasks = new Tasks(userJSON.tasks);
-        // console.log(this.tasks)
-        // this.initBindingsAndEventListener();
+        // this.tasks = new Tasks(userJSON.tasks);
+        this.loadTasks(userJSON.tasks);
+        console.log(this)
     }
 
-    // initBindingsAndEventListener(){
-    //     this.tasksContainer = document.getElementById('tasks_container');
-    // }
+   loadTasks(tasks){
+        new Tasks(tasks);
+   }
 
 }
