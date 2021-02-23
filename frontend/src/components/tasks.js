@@ -15,7 +15,7 @@ class Tasks{
         this.newTaskBtn = document.getElementById('new-task-btn');
         this.newTaskContainer = document.getElementById('new-task-container');
         this.newTaskForm = document.getElementById('new-task-form');
-        this.tasksContainer.addEventListener('change', this.doneTask.bind(this));
+        this.tasksContainer.addEventListener('change', this.updateTask.bind(this));
         this.newTaskBtn.addEventListener('click', this.newTask.bind(this));
         this.newTaskForm.addEventListener('submit', this.createTask.bind(this));
         // this.allTasks = document.querySelectorAll(".delete");
@@ -26,11 +26,12 @@ class Tasks{
         tasksJSON.forEach(task => this.tasks.push(new Task(task)));
     }
 
-    doneTask(e){
+    updateTask(e){
         const task = this.tasks.find(task => task.id == e.target.id);
-        task.done = true;
+        task.done = e.target.checked;
         this.adapter.updateTask(task);
-        e.target.parentNode.classList.add('checked');
+        //Should update tasks list too
+        task.done == true ? e.target.parentNode.classList.add('checked') : e.target.parentNode.classList.remove('checked');
     }
     
     newTask(e){
