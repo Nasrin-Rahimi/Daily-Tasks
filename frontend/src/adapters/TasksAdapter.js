@@ -7,6 +7,17 @@ class TasksAdapter{
         return fetch(this.baseUrl).then(res => res.json());
     }
 
+    createTask(task){
+        return fetch(this.baseUrl, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify( {task} ),
+        })
+        .then(res => res.json())
+    }
+
     updateTask(task){
         // console.log(task);
         fetch(`${this.baseUrl}/${task.id}`, {
@@ -18,4 +29,5 @@ class TasksAdapter{
             body:  JSON.stringify( {task} )
         })
     }
+
 }

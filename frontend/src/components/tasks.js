@@ -6,7 +6,6 @@ class Tasks{
         this.initBindingsAndEventListener();
         this.loadTasks(tasksJSON);
         this.renderTasks();
-        console.log(this)
     }
 
     initBindingsAndEventListener(){
@@ -39,14 +38,28 @@ class Tasks{
 
     createTask(e){
         e.preventDefault();
+        let title = e.target.children[0].value;
+        let image_url = e.target.children[2].value;
         const task = { 
-            title: e.target.children[0].value,
-            image_url: e.target.children[2].value,
+            title: title,
+            image_url: image_url,
             done: false,
-            user_id: 6
+            user_id: this.userId
         };
-        console.log(this);
-        // this.adapter.findOrCreateUser(userName)
+        this.adapter.createTask(task)
+        .then(task =>{
+            this.tasks.push(new Task(task));
+            this.renderTasks();
+            this.newTaskContainer.style.display = 'none';
+            title = "";
+            image_url = "";
+        });
+
+        // this.adapter.createNote(value).then(note => {
+        //     this.notes.push(new Note(note))
+        //     this.newNoteBody.value = ''
+        //     this.render();
+        // });
         // .then(user => new User(user))
         // .then(user => this.welcomeDiv.innerHTML = `<h2>Welcome ${user.userName}</h2>`);
         
