@@ -33,7 +33,7 @@ h2{
 
 .taskImage{
   justify-self: center;
-  height: 8rem;
+  height: 6rem;
   width: auto;
 }
 
@@ -132,5 +132,11 @@ h2{
 
   #new-task-btn{
     display: none;
+  }
+
+  .delete{
+    font-size: 12px;
+    height: 1rem;
+    width: max-content;
   }
   

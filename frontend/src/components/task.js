@@ -12,11 +12,13 @@ class Task{
             return `<li class="task checked"><input type="checkbox" id="${this.id}" checked />
             <label for="${this.id}">${this.title}</label>
             <img class="taskImage" src="${this.imageUrl}"/>
+            <button id="delete-task" class="delete" >Delete Task</button>
             </li>`
         } else {
             return `<li class="task"><input type="checkbox" id="${this.id}" />
             <label for="${this.id}">${this.title}</label>
             <img class="taskImage" src="${this.imageUrl}"/>
+            <button id="delete-task" class="delete" >Delete Task</button>
             </li>`
         }
         // const li = document.createElement('li');
