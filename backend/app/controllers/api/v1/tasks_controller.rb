@@ -14,13 +14,11 @@ class Api::V1::TasksController < ApplicationController
     end
 
     def create
-        # @task = Task.create(task_params)
         task = Task.new(task_params)
         if task.save
             render json: task
         else
-            # binding.pry
-            render json: { status: 'error', message: "Task title cann't be blank." }
+            render json: { status: 'error', message: "Task title already exist." }
         end
     end
 
