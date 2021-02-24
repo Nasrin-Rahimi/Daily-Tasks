@@ -21,8 +21,14 @@ class Tasks{
         this.tasksContainer.addEventListener('click', this.deleteTask.bind(this));
     }
 
+    messageDivToggle(state){
+        this.messageDiv.style.display = state;
+    }
+
     loadTasks(tasksJSON){
-        tasksJSON.forEach(task => this.tasks.push(new Task(task)));
+        if (tasksJSON) {
+            tasksJSON.forEach(task => this.tasks.push(new Task(task)));
+        }
     }
 
     updateTask(e){
@@ -43,20 +49,23 @@ class Tasks{
         e.preventDefault();
         let title = e.target.children[0].value;
         let image_url = e.target.children[2].value;
-        const task = { 
-            title: title,
-            image_url: image_url,
-            done: false,
-            user_id: this.userId
-        };
-        this.adapter.createTask(task)
-        .then(task =>{
-            this.tasks.push(new Task(task));
-            this.renderTasks();
-            this.newTaskContainer.style.display = 'none';
-            title = "";
-            image_url = "";
+        this.adapter.createTask(title, image_url, this.userId)
+        .then(task => {
+            if (task.status == "error") {
+                this.messageDivToggle("block");
+                this.messageDiv.innerHTML = task.message;
+            }
+            else {
+                this.tasks.push(new Task(task));
+                this.renderTasks();
+                this.newTaskContainer.style.display = 'none';
+                title = "";
+                image_url = "";
+            }
         });
+        // .catch(function(error) {
+        //     console.log(error.message);
+        //   });
     }
 
     deleteTask(e){
@@ -77,13 +86,15 @@ class Tasks{
         this.newTaskBtn.style.display = 'block';
         if (this.tasks.length > 0){
             this.tasksContainer.style.display = "block";
-            this.messageDiv.style.display = "none";
+            this.messageDivToggle("none");
             this.tasksContainer.innerHTML = this.tasks.map(task => task.renderTask()).join('');
         }
         else{
             this.tasksContainer.style.display = "none";
-            this.messageDiv.style.display = "block";
+            this.messageDivToggle("block");
             this.messageDiv.innerHTML = `<h2>You don't have any task. Let add your Daily Tasks!</h2>`;
         }
     }
+
+    
 }
