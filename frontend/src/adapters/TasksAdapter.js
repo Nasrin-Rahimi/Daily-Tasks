@@ -7,7 +7,13 @@ class TasksAdapter{
         return fetch(this.baseUrl).then(res => res.json());
     }
 
-    createTask(task){
+    createTask(title, image_url, userId){
+        const task = { 
+            title: title,
+            image_url: image_url,
+            done: false,
+            user_id: userId
+        };
         return fetch(this.baseUrl, {
             method: 'POST',
             headers: {
