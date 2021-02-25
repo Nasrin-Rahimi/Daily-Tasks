@@ -1,7 +1,7 @@
 
 body {
     margin: 0;
-    font-family:'Times New Roman', Times, serif
+    font-family: Monospace
   }
 
 h2{
@@ -66,6 +66,7 @@ h2{
     display: inline-grid;
     margin: 1rem 2rem;
     box-shadow: 3px 4px #e04b52;
+    font-size: 1rem;
     /* opacity: 1;  */
   }
 
@@ -152,5 +153,11 @@ h2{
   
   input:valid {
     border: 2px solid black;
+  }
+
+  .message{
+    text-align: center;
+    color: red;
+    font-size: 1.5rem;
   }
   
