@@ -15,6 +15,9 @@ class Tasks{
         this.newTaskBtn = document.getElementById('new-task-btn');
         this.newTaskContainer = document.getElementById('new-task-container');
         this.newTaskForm = document.getElementById('new-task-form');
+        this.newTaskMessage = document.getElementById('new-task-message');
+        this.newTaskTitle = document.getElementById('title');
+        this.newTaskImageUrl = document.getElementById('image_url');
         this.tasksContainer.addEventListener('change', this.updateTask.bind(this));
         this.newTaskBtn.addEventListener('click', this.newTask.bind(this));
         this.newTaskForm.addEventListener('submit', this.createTask.bind(this));
@@ -38,29 +41,30 @@ class Tasks{
         //Should update tasks list too
         task.done == true ? e.target.parentNode.classList.add('checked') : e.target.parentNode.classList.remove('checked');
     }
+    newTaskToggle(state){
+        this.newTaskContainer.style.display = state;
+        this.newTaskTitle.value = "";
+        this.newTaskImageUrl.value = "";
+        this.newTaskMessage.innerHTML = "";
+    }
     
-    newTask(e){
+    newTask(){
         this.newTaskContainer.style.display == 'block' ? 
-            this.newTaskContainer.style.display = 'none' : 
-            this.newTaskContainer.style.display = 'block';
+            this.newTaskToggle('none') : 
+            this.newTaskToggle('block');
     }
 
     createTask(e){
         e.preventDefault();
-        let title = e.target.children[0].value;
-        let image_url = e.target.children[2].value;
-        this.adapter.createTask(title, image_url, this.userId)
+        this.adapter.createTask(this.newTaskTitle.value, this.newTaskImageUrl.value, this.userId)
         .then(task => {
             if (task.status == "error") {
-                this.messageDivToggle("block");
-                this.messageDiv.innerHTML = task.message;
+                this.newTaskMessage.innerHTML = task.message;
             }
             else {
                 this.tasks.push(new Task(task));
                 this.renderTasks();
-                this.newTaskContainer.style.display = 'none';
-                title = "";
-                image_url = "";
+                this.newTaskToggle('none');
             }
         });
         // .catch(function(error) {
