@@ -23,8 +23,11 @@ class Api::V1::TasksController < ApplicationController
     end
 
     def update
-        @task.update(task_params)
-        render json: @task, status: 200
+        if @task.update(task_params)
+            render json: @task, status: 200
+        else
+            render json: { status: 'error', message: "Server Error!" }
+        end
     end
 
     def destroy
