@@ -97,10 +97,14 @@ class Tasks{
     }
 
     deleteTask(e){
+
         const taskId = e.target.id
         if(e.target && e.target.nodeName == "BUTTON") {
             this.adapter.deleteTask(taskId).then(res =>{
-               if (res.status){
+               if (res.status == 'error'){
+                    this.messageDiv.innerHTML = res.message;
+                    this.toggle(this.messageDiv,'block');
+               } else {
                    const userIdIndex = this.tasks.findIndex(element => element.id == taskId)
                     this.tasks.splice(userIdIndex, 1);
                     this.renderTasks();
