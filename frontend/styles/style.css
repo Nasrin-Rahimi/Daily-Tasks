@@ -5,12 +5,23 @@ body {
   }
 
 h2{
+  text-align: right;
+  color: gray;
+  margin: 1rem;
+}
+
+h3{
   text-align: center;
   color: brown;
+  margin: 1rem;
 }
 
 #message-div{
   display: none;
+  text-align: center;
+  color: brown;
+  font-size: 1rem;
+  margin: 1rem;
 }
 
 #tasks-header {
