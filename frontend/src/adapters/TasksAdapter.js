@@ -44,6 +44,7 @@ class TasksAdapter{
                 "Accept": "application/json"
             }
         })
+        .then(res => res.json())
     }
 
 }
