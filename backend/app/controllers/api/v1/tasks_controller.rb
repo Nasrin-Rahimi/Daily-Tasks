@@ -18,7 +18,7 @@ class Api::V1::TasksController < ApplicationController
         if task.save
             render json: task
         else
-            render json: { status: 'error', message: "Task title already exist." }
+            render json: { status: 'error', message: "Task already exist." }
         end
     end
 
