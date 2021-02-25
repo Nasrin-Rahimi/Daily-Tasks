@@ -33,6 +33,7 @@ class TasksAdapter{
             },
             body:  JSON.stringify( {task} )
         })
+        .then(res => res.json())
     }
 
     deleteTask(taskId){
