@@ -4,15 +4,17 @@ class Tasks{
         this.tasks = [];
         this.userId = userId;
         this.initBindingsAndEventListener();
-        this.loadTasks(tasksJSON);
+        if (tasksJSON) {
+            this.fillTasks(tasksJSON);
+        }
         this.renderTasks();
-        // console.log(this)
     }
 
     initBindingsAndEventListener(){
         this.tasksContainer = document.getElementById('tasks_container');
         this.messageDiv = document.getElementById('message-div');
         this.newTaskBtn = document.getElementById('new-task-btn');
+        this.newTaskBtn.style.display = 'block';
         this.newTaskContainer = document.getElementById('new-task-container');
         this.newTaskForm = document.getElementById('new-task-form');
         this.newTaskMessage = document.getElementById('new-task-message');
@@ -24,34 +26,38 @@ class Tasks{
         this.tasksContainer.addEventListener('click', this.deleteTask.bind(this));
     }
 
-    messageDivToggle(state){
-        this.messageDiv.style.display = state;
+    toggle(element, state){
+        element.style.display = state;
     }
 
-    loadTasks(tasksJSON){
-        if (tasksJSON) {
-            tasksJSON.forEach(task => this.tasks.push(new Task(task)));
-        }
-    }
-
-    updateTask(e){
-        const task = this.tasks.find(task => task.id == e.target.id);
-        task.done = e.target.checked;
-        this.adapter.updateTask(task);
-        //Should update tasks list too
-        task.done == true ? e.target.parentNode.classList.add('checked') : e.target.parentNode.classList.remove('checked');
-    }
-    newTaskToggle(state){
-        this.newTaskContainer.style.display = state;
+    clearNewTaskElements(){
         this.newTaskTitle.value = "";
         this.newTaskImageUrl.value = "";
         this.newTaskMessage.innerHTML = "";
     }
-    
+
+    fillTasks(tasksJSON){
+        tasksJSON.forEach(task => this.tasks.push(new Task(task)));
+    }
+
+    renderTasks(){
+        if (this.tasks.length > 0){
+            this.toggle(this.tasksContainer,"block");
+            this.toggle(this.messageDiv,"none");
+            this.tasksContainer.innerHTML = this.tasks.map(task => task.renderTask()).join('');
+        }
+        else{
+            this.toggle(this.tasksContainer,"none");
+            this.toggle(this.messageDiv,"block");
+            this.messageDiv.innerHTML = `<h3>You don't have any task. Lets add your Daily Tasks!</h3>`;
+        }
+    }
+
     newTask(){
         this.newTaskContainer.style.display == 'block' ? 
-            this.newTaskToggle('none') : 
-            this.newTaskToggle('block');
+            this.toggle(this.newTaskContainer,'none') : 
+            this.toggle(this.newTaskContainer,'block');
+        this.clearNewTaskElements();
     }
 
     createTask(e){
@@ -64,12 +70,30 @@ class Tasks{
             else {
                 this.tasks.push(new Task(task));
                 this.renderTasks();
-                this.newTaskToggle('none');
+                this.toggle(this.newTaskContainer,'none');
+                this.clearNewTaskElements();
             }
         });
         // .catch(function(error) {
         //     console.log(error.message);
         //   });
+    }
+
+    updateTask(e){
+        const task = this.tasks.find(task => task.id == e.target.id);
+        task.done = e.target.checked;
+        this.adapter.updateTask(task)
+        .then(task => {
+            if(task.status == 'error'){
+                this.messageDiv.innerHTML = task.message;
+                this.toggle(this.messageDiv,'block');
+            } else {
+                task.done == true 
+                ? e.target.parentNode.classList.add('checked') 
+                : e.target.parentNode.classList.remove('checked');
+                this.toggle(this.messageDiv,'none');
+            }
+        });
     }
 
     deleteTask(e){
@@ -86,19 +110,7 @@ class Tasks{
         }
     }
 
-    renderTasks(){
-        this.newTaskBtn.style.display = 'block';
-        if (this.tasks.length > 0){
-            this.tasksContainer.style.display = "block";
-            this.messageDivToggle("none");
-            this.tasksContainer.innerHTML = this.tasks.map(task => task.renderTask()).join('');
-        }
-        else{
-            this.tasksContainer.style.display = "none";
-            this.messageDivToggle("block");
-            this.messageDiv.innerHTML = `<h2>You don't have any task. Let add your Daily Tasks!</h2>`;
-        }
-    }
+    
 
     
 }
