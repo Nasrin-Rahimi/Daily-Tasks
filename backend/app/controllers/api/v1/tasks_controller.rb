@@ -26,13 +26,16 @@ class Api::V1::TasksController < ApplicationController
         if @task.update(task_params)
             render json: @task, status: 200
         else
-            render json: { status: 'error', message: "Server Error!" }
+            render json: { status: 'error', message: "Server Error! Please try again." }
         end
     end
 
     def destroy
-        @task.delete
-        render json: {taskId: @task.id}, status: 200
+        if @task.delete
+            render json: {taskId: @task.id}, status: 200
+        else
+            render json: { status: 'error', message: "Delete Task Error! Please try again." }
+        end
     end
 
     private 
