@@ -37,7 +37,8 @@ class Tasks{
     }
 
     fillTasks(tasksJSON){
-        tasksJSON.forEach(task => this.tasks.push(new Task(task)));
+        tasksJSON.sort((a, b) => a.id - b.id).forEach(task => this.tasks.push(new Task(task)));
+        //tasksJSON.forEach(task => this.tasks.push(new Task(task)));
     }
 
     renderTasks(){
@@ -83,15 +84,13 @@ class Tasks{
         const task = this.tasks.find(task => task.id == e.target.id);
         task.done = e.target.checked;
         this.adapter.updateTask(task)
-        .then(task => {
-            if(task.status == 'error'){
-                this.messageDiv.innerHTML = task.message;
+        .then(newTask => {
+            if(newTask.status == 'error'){
+                this.messageDiv.innerHTML = newTask.message;
                 this.toggle(this.messageDiv,'block');
             } else {
-                task.done == true 
-                ? e.target.parentNode.classList.add('checked') 
-                : e.target.parentNode.classList.remove('checked');
-                this.toggle(this.messageDiv,'none');
+                this.renderTasks();
+                //this.toggle(this.messageDiv,'none');
             }
         });
     }
@@ -113,8 +112,5 @@ class Tasks{
            
         }
     }
-
-    
-
     
 }
