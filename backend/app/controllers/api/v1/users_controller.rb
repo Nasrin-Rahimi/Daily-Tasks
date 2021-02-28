@@ -1,16 +1,9 @@
 class Api::V1::UsersController < ApplicationController
 
-    # before_action :set_user, only: [:show, :update, :destroy]
-    
-    def index 
-        users = User.all
-        render json: users, except: [:created_at, :updated_at], status: 200
-    end
-
     def show
         user = User.find_by(id: params[:id])
         if(user)
-            render json: {id: user.id, name: user.name, tasks: user.tasks}, status: 200
+            render json: {id: user.id, name: user.name, tasks: user.tasks}
         else
             render json: {message: 'User Not Found'}
         end
@@ -22,18 +15,8 @@ class Api::V1::UsersController < ApplicationController
             redirect_to "/api/v1/users/#{user.id}"
         else
             user = User.create(user_params)
-            render json: user, status: 200
+            render json: user
         end        
-    end
-
-    def update
-        @user.update(user_params)
-        render json: @user, status: 200
-    end
-
-    def destroy
-        @user.destroy
-        render json: {userId: @user.id}, status: 200
     end
 
     private
@@ -42,7 +25,4 @@ class Api::V1::UsersController < ApplicationController
         params.require(:user).permit(:name)
     end
 
-    def set_user
-        @user = User.find(params[:id])
-    end
 end
