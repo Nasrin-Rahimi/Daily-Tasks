@@ -1,24 +1,41 @@
-# README
+# Daily Tasks
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a SPA(Single Web Application) - Vanilla JS, and a back end Rails API.
 
-Things you may want to cover:
+# What you can do
 
-* Ruby version
+You can enter your name and create your daily tasks. You can checked or unchecked your tasks or delete your tasks.
 
-* System dependencies
+# Install
 
-* Configuration
+git clone git@github.com:Nasrin-Rahimi/Daily-Tasks.git
+cd Daily-Tasks
 
-* Database creation
+# Ruby version
 
-* Database initialization
+ruby 2.6.1p33
 
-* How to run the test suite
+# Rails version
 
-* Services (job queues, cache servers, search engines, etc.)
+Rails 6.0.3.4`
 
-* Deployment instructions
+# Initialize the database
 
-* ...
+rails db:create db:migrate db:seed
+
+# Serve
+
+rails s (from inside backend folder)
+
+# Run App
+
+open index.html (from inside frontend folder)
+
+# Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/<Nasrin-Rahimi>/Daily-Tasks. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the code of conduct.
+
+# License
+
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
