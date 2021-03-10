@@ -38,7 +38,6 @@ class Tasks{
 
     fillTasks(tasksJSON){
         tasksJSON.sort((a, b) => a.id - b.id).forEach(task => this.tasks.push(new Task(task)));
-        //tasksJSON.forEach(task => this.tasks.push(new Task(task)));
     }
 
     renderTasks(){
@@ -75,9 +74,6 @@ class Tasks{
                 this.clearNewTaskElements();
             }
         });
-        // .catch(function(error) {
-        //     console.log(error.message);
-        //   });
     }
 
     updateTask(e){
@@ -96,7 +92,6 @@ class Tasks{
     }
 
     deleteTask(e){
-
         const taskId = e.target.id
         if(e.target && e.target.nodeName == "BUTTON") {
             this.adapter.deleteTask(taskId).then(res =>{

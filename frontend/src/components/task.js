@@ -21,14 +21,6 @@ class Task{
             <button id="${this.id}" class="delete" >Delete Task</button>
             </li>`
         }
-        // const li = document.createElement('li');
-        // li.classList.add('task');
-        // const doneCheckbox = document.createElement('checkbox');
-        // doneCheckbox.id = this.id;
-        // doneCheckbox.checked = false;
-        // li.appendChild(doneCheckbox);
-        // return li;
     }
 
-    
 }
